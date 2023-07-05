@@ -1,204 +1,154 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="style.css" />
-    <title>Assignment & Lab Cover Generator</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon" />
-  </head>
 
-  <body>
-    <!-- Button to open the popup -->
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
+  <link rel="stylesheet" href="styles/style.css" />
+  <title>Assignment & Lab Cover Generator</title>
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+</head>
 
-    <div class="container">
-      <button class="btn btn-success" onclick="togglePopup('assignment-popup')">
-        Assignment
-      </button>
-      <button class="btn btn-success" onclick="togglePopup('labcover-popup')">
-        Lab Cover
-      </button>
-      <button class="btn btn-success" onclick="togglePopup('sample-popup')">
-        Download Sample PDF
-      </button>
-    </div>
+<body>
+  <!-- Button to open the popup -->
 
-    <!-- Popup assignment form -->
-    <div id="assignment-popup" class="popup">
-      <div class="popup-content">
-        <form method="post" class="form-container" id="formData">
-          <h1>Assignment</h1>
-          <div class="course_code">
-            <div class="form-floating">
-              <select class="form-select" id="course_code">
-                <option value="cse1200">CSE 1200</option>
-                <option value="cse1201">CSE 1201</option>
-                <option value="cse1202">CSE 1202</option>
-                <option value="cse1203">CSE 1203</option>
-                <option value="cse1204">CSE 1204</option>
-                <option value="math1213">Math 1213</option>
-                <option value="hum1213">Hum 1213</option>
-                <option value="phy1213">Phy 1213</option>
-                <option value="phy1214">Phy 1214</option>
-              </select>
-            </div>
+  <div class="container">
+    <button class="btn btn-success" onclick="togglePopup('assignment-popup')">
+      Assignment
+    </button>
+    <button class="btn btn-success" onclick="togglePopup('labcover-popup')">
+      Lab Cover
+    </button>
+    <button class="btn btn-success" onclick="togglePopup('sample-popup')">
+      Download Sample PDF
+    </button>
+  </div>
+
+  <!-- Popup assignment form -->
+  <div id="assignment-popup" class="popup">
+    <div class="popup-content">
+      <form method="post" class="form-container" id="formData">
+        <h1>Assignment</h1>
+        <div class="course_code">
+          <div class="form-floating">
+            <select class="form-select" id="course_code">
+            </select>
           </div>
-          <div class="teacher_name">
-            <div class="form-floating">
-              <select class="form-select" id="teacher_name">
-                <option value="TJ">Tasmia Jannat</option>
-                <option value="NIM">Nazrul Islam Mondol</option>
-              </select>
-            </div>
-          </div>
-
-          <label for="name">Assignment Name:</label>
-          <input
-            type="text"
-            id="assign_name"
-            name="assign_name"
-            required
-          /><br /><br />
-          <label for="roll_assign" class="roll_assign">Roll: </label>
-          <input
-            type="text"
-            id="roll"
-            name="roll_assign"
-            value="2103"
-            required
-          /><br /><br />
-          <label for="date_assign">Submission Date:</label>
-          <input
-            type="text"
-            id="date_assign"
-            name="date_assign"
-            required
-          /><br /><br />
-
-          <button
-            class="btn btn-success assgnr"
-            placeholder="Submit"
-            onclick="MakeAssignment()"
-            type="submit"
-          >
-            Generate PDF
-          </button>
-        </form>
-      </div>
-      <span class="close-btn" onclick="togglePopup('assignment-popup')"
-        >&times;</span
-      >
-    </div>
-
-    <!-- Popup lab cover form -->
-
-    <div id="labcover-popup" class="popup">
-      <div class="popup-content">
-        <form method="post" class="form-container" id="formDataLab">
-          <h1>Lab Cover</h1>
-          <div class="course_code">
-            <div class="form-floating">
-              <select class="form-select" id="course_code_lab">
-                <option value="cse1200">CSE 1200</option>
-                <option value="cse1202">CSE 1202</option>
-                <option value="cse1204">CSE 1204</option>
-                <option value="phy1214">Phy 1214</option>
-              </select>
-            </div>
-          </div>
-          <div class="teacher_name">
-            <div class="form-floating">
-              <select class="form-select" id="teacher_name_lab">
-                <option value="TJ">Tasmia Jannat</option>
-                <option value="NIM">Nazrul Islam Mondol</option>
-              </select>
-            </div>
-          </div>
-
-          <label for="experiment_name">Experiment Name:</label>
-          <input
-            type="text"
-            id="experiment_name"
-            name="experiment_name"
-            required
-          /><br />
-          <label for="experiment_number">Experiment No:</label>
-          <input
-            type="text"
-            id="experiment_number"
-            name="experiment_number"
-            required
-          /><br /><br />
-          <label for="roll_lab" class="roll_lab">Roll: </label>
-          <input
-            type="text"
-            id="roll_lab"
-            name="roll_lab"
-            value="2103"
-            required
-          /><br />
-          <label for="date_lab">Submission Date:</label>
-          <input
-            type="text"
-            id="date_lab"
-            name="date_lab"
-            required
-          /><br /><br />
-
-          <button
-            class="btn btn-success labgnr"
-            placeholder="Submit"
-            onclick="MakeLabCover()"
-            type="submit"
-          >
-            Generate PDF
-          </button>
-        </form>
-      </div>
-      <span class="close-btn" onclick="togglePopup('labcover-popup')"
-        >&times;</span
-      >
-    </div>
-
-    <!-- Popup sample form -->
-    <div id="sample-popup" class="popup">
-      <div class="popup-content">
-        <div class="form-container">
-          <button class="btn btn-success assdow" onclick="downloadAssignment()">
-            Assignment
-          </button>
-          <button class="btn btn-success labdow" onclick="downloadLabCover()">
-            Lab Cover
-          </button>
         </div>
-      </div>
-      <span class="close-btn" onclick="togglePopup('sample-popup')"
-        >&times;</span
-      >
-    </div>
+        <div class="teacher_name">
+          <div class="form-floating">
+            <select class="form-select" id="teacher_name">
+            </select>
+          </div>
+        </div>
 
-    <script>
-      alert("Better To Use A Desktop/Laptop!");
-      function togglePopup(popupId) {
-        const popup = document.getElementById(popupId);
-        popup.classList.toggle("open");
-      }
+        <label for="name">Assignment Name:</label>
+        <input type="text" id="assign_name" name="assign_name" required /><br /><br />
+        <label for="roll_assign" class="roll_assign">Roll: </label>
+        <input type="text" id="roll" name="roll_assign" value="2103" required /><br /><br />
+        <label for="date_assign">Submission Date:</label>
+        <input type="text" id="date_assign" name="date_assign" required /><br /><br />
+
+        <button class="btn btn-success assgnr" placeholder="Submit" onclick="MakeAssignment()" type="submit">
+          Generate PDF
+        </button>
+      </form>
+    </div>
+    <span class="close-btn" onclick="togglePopup('assignment-popup')">&times;</span>
+  </div>
+
+  <!-- Popup lab cover form -->
+
+  <div id="labcover-popup" class="popup">
+    <div class="popup-content">
+      <form method="post" class="form-container" id="formDataLab">
+        <h1>Lab Cover</h1>
+        <div class="course_code">
+          <div class="form-floating">
+            <select class="form-select" id="course_code_lab">
+              <option value="cse1200">CSE 1200</option>
+              <option value="cse1202">CSE 1202</option>
+              <option value="cse1204">CSE 1204</option>
+              <option value="phy1214">Phy 1214</option>
+            </select>
+          </div>
+        </div>
+        <div class="teacher_name">
+          <div class="form-floating">
+            <select class="form-select" id="teacher_name_lab">
+              <option value="TJ">Tasmia Jannat</option>
+              <option value="NIM">Nazrul Islam Mondol</option>
+            </select>
+          </div>
+        </div>
+
+        <label for="experiment_name">Experiment Name:</label>
+        <input type="text" id="experiment_name" name="experiment_name" required /><br />
+        <label for="experiment_number">Experiment No:</label>
+        <input type="text" id="experiment_number" name="experiment_number" required /><br /><br />
+        <label for="roll_lab" class="roll_lab">Roll: </label>
+        <input type="text" id="roll_lab" name="roll_lab" value="2103" required /><br />
+        <label for="date_lab">Submission Date:</label>
+        <input type="text" id="date_lab" name="date_lab" required /><br /><br />
+
+        <button class="btn btn-success labgnr" placeholder="Submit" onclick="MakeLabCover()" type="submit">
+          Generate PDF
+        </button>
+      </form>
+    </div>
+    <span class="close-btn" onclick="togglePopup('labcover-popup')">&times;</span>
+  </div>
+
+  <!-- Popup sample form -->
+  <div id="sample-popup" class="popup">
+    <div class="popup-content">
+      <div class="form-container">
+        <button class="btn btn-success assdow" onclick="downloadAssignment()">
+          Assignment
+        </button>
+        <button class="btn btn-success labdow" onclick="downloadLabCover()">
+          Lab Cover
+        </button>
+      </div>
+    </div>
+    <span class="close-btn" onclick="togglePopup('sample-popup')">&times;</span>
+  </div>
+
+  <script>
+    // fetching and updating the course codes
+    fetch("data/course_data.json").then(response => response.json()).then(data => {
+      var options = "";
+      Object.keys(data).forEach(element => {
+        options += "<option value='" + element + "'>" + data[element]["code"] + " - " + data[element]["name"] + "</option>\n"
+      })
+      document.querySelector("#course_code").innerHTML = options;
+    })
+    fetch("data/student_data.json").then(response => response.json())
+
+    // fetching and updating the teachers name
+    fetch("data/teacher_data.json").then(response => response.json()).then(data => {
+      var options = "";
+      Object.keys(data).forEach(element => {
+        options += "<option value='" + element + "'>" + data[element]["name"] + "</option>\n"
+      })
+      document.querySelector("#teacher_name").innerHTML = options;
+    })
+  </script>
+
+  <script>
+    alert("Better To Use A Desktop/Laptop!");
+    function togglePopup(popupId) {
+      const popup = document.getElementById(popupId);
+      popup.classList.toggle("open");
+    }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.8.335/pdf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pdf-lib/dist/pdf-lib.js"></script>
+  <script src="scripts/printassign.js"></script>
+  <script src="scripts/printlab.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.8.335/pdf.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/pdf-lib/dist/pdf-lib.js"></script>
-    <script src="course_data.js"></script>
-    <script src="student_data.js"></script>
-    <script src="teacher_data.js"></script>
-    <script src="printassign.js"></script>
-    <script src="printlab.js"></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+</body>
+
 </html>
